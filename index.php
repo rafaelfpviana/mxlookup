@@ -59,7 +59,7 @@ if (!empty($_FILES['csvfile'])){
             </form>
             <?php if ($uploaded): ?>
             <p class="bg-success">Your file is ready, copy it's contents bellow</p>
-            <textarea><?php system("./resolve; cat ./uploads/domains.resolved"); ?></textarea>
+            <textarea style="width: 1000px; height: 400px"><?php system("./resolve; cat ./upload/domains.resolved"); ?></textarea>
             <?php endif; ?>
       </div>
     </div>

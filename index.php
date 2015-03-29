@@ -38,7 +38,11 @@
                 <h1>MX Lookup</h1>
             </div>
             <div id="progressbar"></div>
-            <p class="lead">Provide a CSV file containing the domain and the total count of that domain separeated by comma..</p>
+            <p class="lead">Provide a CSV file containing the domain and the total count of that domain separeated by comma..<br />Example:<br />
+<pre>domain.com,1234
+anotherdomain.net,4321
+yetanotherdomain.org,8773</pre></p>
+            
             <div class="form-group">
               <input type="file" id="csvfile" name="csvfile" data-filename-placement="inside" title="Choose your file" />
             </div>

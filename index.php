@@ -1,16 +1,3 @@
-<?php
-ERROR_REPORTING(E_ALL);
-$uploaddir = getcwd() . '/upload/';
-$uploadfile = $uploaddir . 'domains';
-
-$uploaded = false;
-if (!empty($_FILES['csvfile'])){
-    if(move_uploaded_file($_FILES['csvfile']['tmp_name'], $uploadfile)) {
-        $uploaded = true;
-    }
-}
-
-?> 
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -30,6 +17,8 @@ if (!empty($_FILES['csvfile'])){
         .jumbotron #csvfile {
             margin: 0 auto;
         }
+        #progressbar{display:none}
+        #res{width:700px;height:200px}
     </style>
 
     <!-- Bootstrap -->
@@ -48,25 +37,24 @@ if (!empty($_FILES['csvfile'])){
             <div class="page-header">
                 <h1>MX Lookup</h1>
             </div>
-            
-            <form action="index.php" enctype="multipart/form-data" method="POST">
-                <p class="lead">Provide a CSV file containing the domain and the total count of that domain separeated by comma..</p>
-                <div class="form-group">
-                    <label for="csvfile">Choose your file</label>
-                    <input type="file" id="csvfile" name="csvfile">
-                </div>
-                <p><button type="submit" class="btn btn-lg btn-success">Submit</button></p>
-            </form>
-            <?php if ($uploaded): ?>
-            <p class="bg-success">Your file is ready, copy it's contents bellow</p>
-            <textarea style="width: 1000px; height: 400px"><?php system("./resolve; cat ./upload/domains.resolved"); ?></textarea>
-            <?php endif; ?>
+            <div id="progressbar"></div>
+            <p class="lead">Provide a CSV file containing the domain and the total count of that domain separeated by comma..</p>
+            <div class="form-group">
+              <input type="file" id="csvfile" name="csvfile" data-filename-placement="inside" title="Choose your file" />
+            </div>
+            <h2>Result - copy it bellow</h2>
+            <textarea id="res"></textarea>
       </div>
     </div>
 
     <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+    <script type="text/javascript" src="//ajax.googleapis.com/ajax/libs/jqueryui/1.11.3/jquery-ui.min.js"></script>
+    <script type="text/javascript" src="//ajax.googleapis.com/ajax/libs/mootools/1.5.1/mootools-yui-compressed.js"></script>
+    <link rel="stylesheet" type="text/css" href="//cdnjs.cloudflare.com/ajax/libs/jqueryui/1.10.3/css/base/jquery-ui.css">
     <!-- Include all compiled plugins (below), or include individual files as needed -->
     <script src="js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="js/bootstrap.file-input.js"></script>
+    <script src="js/lookup.js"></script>
   </body>
 </html>
